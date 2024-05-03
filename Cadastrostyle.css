@@ -1,0 +1,17 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.div_formulario{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
