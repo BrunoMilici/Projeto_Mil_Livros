@@ -3,15 +3,35 @@
     margin: 0;
 }
 
+body{
+    display: flex;
+
+}
+
 .container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
+    justify-content: space-evenly;
+    background-color: rgb(255, 255, 255);
+    height: 100vh;      
+    width: 53%;
 }
 
 .div_formulario{
+    justify-content: space-evenly;
     display: flex;
     flex-direction: column;
     width: 30%;
+    margin-bottom: 30%;
+}
+
+#div_img{
+    background-image: url("Rectangle 23.png");
+    background-size:  cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 50%;
+    margin-left: 50%;
+    position: absolute;
 }
