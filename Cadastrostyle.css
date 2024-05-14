@@ -7,6 +7,7 @@
 
 body{
     display: flex;
+    background-color: #31222913;
 
 }
 
@@ -25,8 +26,7 @@ body{
 }
 
 .div_texto{
-   margin-top: 10%;
-   padding: 20px;
+   margin-top: 5%;
    padding-bottom: 70px;
 }
 
@@ -34,7 +34,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 50%;
     height: 50%;
     background-color: rgb(255, 255, 255);
@@ -58,6 +58,7 @@ input{
 
 label{
     justify-self: start;
+    font-size: medium;
     padding: 10px;
 }
 
@@ -86,7 +87,7 @@ a{
 .login{
 font-size: medium;
 text-decoration: none;
-color: #312229;
+color: #312229; 
 }
 
 .login:hover{
@@ -99,17 +100,25 @@ color: #312229;
     background-image: url("Rectangle 23.png");
     background-size:  cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 100vh    ;
     width: 50%;
     margin-left: 50%;
     position: absolute;
     display: flex;
-    justify-content: center;
-    align-items: end;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+h2{
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    font-weight: 400;
+    text-align: center;
 }
 
 p{
     color: white;
-    font-size: xx-large;
+    font-size: medium;
     text-align: center;
+    padding: 10px;
 }
