@@ -13,7 +13,7 @@
     background-color: #54101D;
 }
 
- ul{
+ .ulNav{
     display: flex;
     text-decoration: none;
 }
@@ -27,7 +27,7 @@
     font-family: "Inter", sans-serif;
 }
 
-li{
+.liNav{
     padding: 10px;
     list-style: none;
 }
@@ -184,5 +184,78 @@ h1{
     height: 200px;
     width: 200px;
     margin-top: 5%;
+}
+
+/* Comece Agora */
+
+.section_comecar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div_comeceAgoraContainer{
+    display: flex;
+    width: 50%;
+    height: 60%;
+    background-color: #54101D;
+    margin-bottom: 5%;
+    box-shadow: 3px 2px 3px 3px rgba(115, 120, 128, 0.144);
+}
+
+.paragrafoComecar{
+    font-family: "Inter", sans-serif;  
+    color: #FFFF;
+    font-size: 15px;
+    font-weight: 300;
+    text-align: justify;
+    margin: 5%;
+}
+
+.comecarCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logoComecar{
+    padding: 30px;
+    width: 120px;
+}
+
+.comecarButton{
+    padding: 10px;
+    margin-top: 10%;
+    width: 70%;
+    background-color: #47596F;
+    color: white;
+    transition: 0.3s;
+    font-size: large;
+    outline: none;
+    border: none;
+    margin-bottom: 10%;
+}
+
+.comecarButton:hover  {
+    background-color: #312229;
+    cursor: default;
+}
+
+/* footer */
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between ;
+    background-color: #54101D;
+}
+
+.ulFooter{
+    display: flex;
+    text-decoration: none;  
+}
+.liFooter{
+    list-style: none;
 }
 
