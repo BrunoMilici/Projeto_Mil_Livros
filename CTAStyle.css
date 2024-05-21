@@ -246,16 +246,8 @@ h1{
 
 footer{
     display: flex;
-    align-items: center;
-    justify-content: space-between ;
+    justify-content: center ;
     background-color: #54101D;
 }
 
-.ulFooter{
-    display: flex;
-    text-decoration: none;  
-}
-.liFooter{
-    list-style: none;
-}
 

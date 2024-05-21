@@ -10,85 +10,94 @@
     <div class="div_navbar">
         <img src="DraftLogo.png" alt="">
         <ul class="ulNav"></ul>
+    </div >
+    <div id="content">
+        <section class="cabecalho">
+            <h2 class="title">Criação de Perfil</h2>
+            <p class="paragrafoPadrao">Olá leitor, Responda algumas perguntas sobre seus hábitos de leitura para nós te conhecermos melhor...</p>
+        </section>
+    
+        <section class="peguntasPessoais">
+            <h2 class="subTitulo">Sobre Você</h2>
+            <div class="div_questionarioPessoal">
+                <div class="div_perguntaPessoal">
+                    <p class="pPergunta">Qual é a sua data de nascimento?</p>
+                    <input type="date" id="input_dtNascimento">
+                </div>
+                <div class="div_perguntaPessoal">
+                    <form action="">
+                    <p class="pPergunta">Qual é o seu gênero?</p>
+                    <input name="genero" type="radio">
+                    <label class="labelGenero" for="">Homem</label>
+                    <input name="genero" type="radio">
+                    <label class="labelGenero" for="">Mulher</label>
+                    <input name="genero" type="radio">
+                    <label class="labelGenero" for="">Prefiro não responder</label>
+                    </form>
+                </div>
+            </div>
+        </section>
+    
+        <section class="peguntasLiterarias">
+            <h2 class="subTitulo">Sobre seus hábitos de leitura</h2>
+            <div class="div_questionarioLiterario">
+                <div class="div_perguntaLiterariaSelect">
+                    <p class="pPergunta">Qual é o seu gênero literário favorito</p>
+                    <select name="" id="select_livros">
+                        <option selected disabled value="#">Gênero Favorito Favorito</option>
+                        <option>Ficção Científica</option>
+                        <option>Fantasia</option>
+                        <option>Romance</option>
+                        <option>Mistério</option>
+                        <option>Terror</option>
+                        <option>Aventura</option>
+                        <option>Histórico</option>
+                        <option>Biografia</option>
+                        <option>Jovem Adulto</option>
+                        <option>Poesia</option>
+                        <option>Infantil</option>
+                    </select>
+                </div>
+    
+                <div>
+                    <p class="pPerguntaHabito">Quantos Livros você leu no último semestre (6 meses)</p>
+                    <div class="div_perguntaLiterariaHabito">
+                        <div class="div_radio">
+                            <label class="labelLivros" for="">
+                            <input class="radio_livros" name="livros" type="radio">
+                            <h3>bla</h3>
+                            <p class="pRadio">lorem lorem e tal</p>
+                            </label>
+                            </div>
+            
+                            <div class="div_radio">
+                                <label class="labelLivros" for="">
+                                <input class="radio_livros" name="livros" type="radio">
+                                <h3>bla</h3>
+                                <p class="pRadio">lorem lorem e tal</p>
+                                </label>
+                            </div>
+            
+                            <div class="div_radio">
+                                <label class="labelLivros" for="">
+                                    <input class="radio_livros" name="livros" type="radio">
+                                <h3>bla</h3>
+                                <p class="pRadio">lorem lorem e tal</p>
+                                </label>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <button onclick="mudar()" class="prosseguirBtn">Prosseguir</button>
     </div>
-
-    <section class="cabecalho">
-        <h2 class="title">Criação de Perfil</h2>
-        <p class="paragrafoPadrao">Olá leitor, Responda algumas perguntas sobre seus hábitos de leitura para nós te conhecermos melhor...</p>
-    </section>
-
-    <section class="peguntasPessoais">
-        <h2 class="subTitulo">Sobre Você</h2>
-        <div class="div_questionarioPessoal">
-            <div class="div_perguntaPessoal">
-                <p class="pPergunta">Qual é a sua data de nascimento?</p>
-                <input type="date" id="input_dtNascimento">
-            </div>
-            <div class="div_perguntaPessoal">
-                <form action="">
-                <p class="pPergunta">Qual é o seu gênero?</p>
-                <input name="genero" type="radio">
-                <label class="labelGenero" for="">Homem</label>
-                <input name="genero" type="radio">
-                <label class="labelGenero" for="">Mulher</label>
-                <input name="genero" type="radio">
-                <label class="labelGenero" for="">Prefiro não responder</label>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <section class="peguntasLiterarias">
-        <h2 class="subTitulo">Sobre seus hábitos de leitura</h2>
-        <div class="div_questionarioLiterario">
-            <div class="div_perguntaLiterariaSelect">
-                <p class="pPergunta">Qual é o seu gênero literário favorito</p>
-                <select name="" id="select_livros">
-                    <option selected disabled value="#">Gênero Favorito Favorito</option>
-                    <option>Ficção Científica</option>
-                    <option>Fantasia</option>
-                    <option>Romance</option>
-                    <option>Mistério</option>
-                    <option>Terror</option>
-                    <option>Aventura</option>
-                    <option>Histórico</option>
-                    <option>Biografia</option>
-                    <option>Jovem Adulto</option>
-                    <option>Poesia</option>
-                    <option>Infantil</option>
-                </select>
-            </div>
-
-            <div class="div_perguntaLiterariaHabito">
-                <p class="pPergunta">Quantos Livros você leu no último semestre (6 meses)</p>
-                <div class="div_radio">
-                <label class="labelLivros" for="">
-                <input class="radio_livros" name="livros" type="radio">
-                <h3>bla</h3>
-                <p class="pRadio">lorem lorem e tal</p>
-                </label>
-                </div>
-
-                <div class="div_radio">
-                    <label class="labelLivros" for="">
-                    <input class="radio_livros" name="livros" type="radio">
-                    <h3>bla</h3>
-                    <p class="pRadio">lorem lorem e tal</p>
-                    </label>
-                </div>
-
-                <div class="div_radio">
-                    <label class="labelLivros" for="">
-                        <input class="radio_livros" name="livros" type="radio">
-                    <h3>bla</h3>
-                    <p class="pRadio">lorem lorem e tal</p>
-                    </label>
-                </div>
-        
-            </div>
-        </div>
-    </section>
-
     
 </body>
 </html>
+
+<script>
+    function mudar() {
+        content.innerHTML = ``;
+        
+    }
+</script>
