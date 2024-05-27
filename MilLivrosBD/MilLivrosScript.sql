@@ -6,7 +6,7 @@ CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nomeUsuario VARCHAR(45),
 emaiUsuario VARCHAR(255),
-dtNascimento DATE 
+senha VARCHAR(45)
 ) auto_increment = 1;
 
 CREATE TABLE generosLiterarios(
@@ -17,7 +17,8 @@ generoLiterario VARCHAR(45)
 CREATE TABLE Perfil(
 idPerfil INT AUTO_INCREMENT,
 tipoLeitor VARCHAR (15),
-informacoesAdicionais VARCHAR(300),
+dtNascimento DATE,
+genero VARCHAR(45),
 ftPerfil INT,
 fkUsuario INT,
 fkGeneroFavorito INT,
@@ -29,7 +30,6 @@ PRIMARY KEY(idPerfil,fkUsuario)
 CREATE TABLE Livro(
 idLivro INT PRIMARY KEY AUTO_INCREMENT,
 nomeLivro VARCHAR(100) NOT NULL,
-nomeAutor VARCHAR(45),
 fkGeneroLivro INT,
 nota INT,
 resenha TEXT,

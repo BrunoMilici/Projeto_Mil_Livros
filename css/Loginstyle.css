@@ -26,7 +26,8 @@ body{
 }
 
 .div_texto{
-   margin-top: 5%;
+   margin-top: 10%;
+   padding: 20px;
    padding-bottom: 70px;
 }
 
@@ -58,13 +59,12 @@ input{
 
 label{
     justify-self: start;
-    font-size: medium;
     padding: 10px;
 }
 
 button{
     padding: 10px;
-    margin-top: 10%;
+    margin-top: 5%;
     width: 70%;
     background-color: #47596F;
     color: white;
@@ -87,7 +87,7 @@ a{
 .login{
 font-size: medium;
 text-decoration: none;
-color: #312229; 
+color: #312229;
 }
 
 .login:hover{
@@ -97,10 +97,10 @@ color: #312229;
 
 
 #div_img{
-    background-image: url("Rectangle 23.png");
+    background-image: url("../img/imgCadastro.png");
     background-size:  cover;
     background-repeat: no-repeat;
-    height: 100vh    ;
+    height: 100vh;
     width: 50%;
     margin-left: 50%;
     position: absolute;

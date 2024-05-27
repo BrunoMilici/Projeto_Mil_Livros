@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Quadrados na Grid</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        #text-input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        #add-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+        .grid-item {
+            background-color: #3498db;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            word-wrap: break-word;
+            cursor: pointer;
+        }
+        .dashboard {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            background-color: #fff;
+        }
+        .dashboard h1 {
+            font-size: 3em;
+            color: #333;
+        }
+        #back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="input-container">
+            <input type="text" id="text-input" placeholder="Digite o texto">
+            <button id="add-button">+</button>
+        </div>
+        <div class="grid" id="grid">
+            <!-- Quadrados coloridos serão adicionados aqui -->
+        </div>
+    </div>
+
+    <div class="dashboard" id="dashboard">
+        <h1>DASHBOARD</h1>
+        <button id="back-button">Voltar</button>
+    </div>
+
+    <script>
+        document.getElementById('add-button').addEventListener('click', function() {
+            const textInput = document.getElementById('text-input');
+            const grid = document.getElementById('grid');
+            
+            const gridItem = document.createElement('div');
+            gridItem.className = 'grid-item';
+            gridItem.textContent = textInput.value;
+
+            gridItem.addEventListener('click', function() {
+                document.querySelector('.container').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'flex';
+            });
+
+            grid.appendChild(gridItem);
+
+            textInput.value = '';
+        });
+
+        document.getElementById('back-button').addEventListener('click', function() {
+            document.getElementById('dashboard').style.display = 'none';
+            document.querySelector('.container').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
