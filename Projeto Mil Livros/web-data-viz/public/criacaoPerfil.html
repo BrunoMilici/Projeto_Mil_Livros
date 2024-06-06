@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação de Perfil - Mil Livros</title>
+    <link rel="stylesheet" href="css/criacaoPerfilStyle.css">
+</head>
+
+<body>
+    <div class="div_navbar">
+        <img class="logoNav" src="img/logoML-semfundo.png" alt="">
+        <ul class="ulNav"></ul>
+    </div>
+    <div id="content">
+        <section class="cabecalho">
+            <h2 class="title">Criação de Perfil</h2>
+            <p class="paragrafoPadrao">Olá <span id="b_usuario">Leitor</span>, Responda algumas perguntas sobre seus
+                hábitos de leitura para nós te
+                conhecermos melhor...</p>
+        </section>
+
+        <section class="peguntasPessoais">
+            <h2 class="subTitulo">Sobre Você</h2>
+            <div class="div_questionarioPessoal">
+                <div class="div_perguntaPessoal">
+                    <p class="pPergunta">Qual é a sua data de nascimento?</p>
+                    <input type="date" id="input_dtNascimento">
+                </div>
+                <div class="div_perguntaPessoal">
+                    <form action="">
+                        <p class="pPergunta">Qual é o seu gênero?</p>
+                        <input name="genero" value="Homem" type="radio">
+                        <label class="labelGenero" for="">Masculino</label>
+                        <input name="genero" value="Mulher" type="radio">
+                        <label class="labelGenero" for="">Feminino</label>
+                        <input name="genero" value="NResponder" type="radio">
+                        <label class="labelGenero" for="">Prefiro não responder</label>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="peguntasLiterarias">
+            <h2 class="subTitulo">Sobre seus hábitos de leitura</h2>
+            <div class="div_questionarioLiterario">
+                <div class="div_perguntaLiterariaSelect">
+                    <p class="pPergunta">Qual é o seu gênero literário favorito</p>
+                    <select id="select_genLivros">
+                        <option selected disabled value="#">Gênero Literário Favorito</option>
+                        <option value="1">Ficção Científica</option>
+                        <option value="2">Fantasia</option>
+                        <option value="3">Romance</option>
+                        <option value="4">Mistério</option>
+                        <option value="5">Terror</option>
+                        <option value="6">Aventura</option>
+                        <option value="7">Histórico</option>
+                        <option value="8">Biografia</option>
+                        <option value="9">Jovem Adulto</option>
+                        <option value="10">Poesia</option>
+                        <option value="11">Infantil</option>
+                    </select>
+                </div>
+            </div>
+
+            <p class="pPergunta">Quantos Livros você lê em três meses?</p>
+            <div class="div_perguntaLiterariaHabito">
+                <label class="labelPerguntaHabito">
+                    <input type="radio" name="radioHabito" value="Leitor Iniciante" />
+                    <div>
+                        <h3>Leitor Iniciante</h3>
+                        <p class="pHabito">0 - 2 Livros</p>
+                    </div>
+                </label>
+
+                <label class="labelPerguntaHabito">
+                    <input type="radio" name="radioHabito" value="Leitor habituado" />
+                    <div>
+                        <h3>Leitor habituado</h3>
+                        <p class="pHabito">3 - 4 Livros</p>
+                    </div>
+                </label>
+
+                <label class="labelPerguntaHabito">
+                    <input type="radio" name="radioHabito" value="Fanático por livros" />
+                    <div>
+                        <h3>Fanático por livros</h3>
+                        <p class="pHabito">6 ou mais</p>
+                    </div>
+                </label>
+            </div>
+
+        </section>
+
+        <button onclick="prosseguir()" class="prosseguirBtn">Prosseguir</button>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    var dtNacimentoVar;
+    var genLiterarioFavoritoVar;
+    var generoPerfilVar;
+    var habitoLeituraVar;
+
+    function prosseguir() {
+
+
+        dtNacimentoVar = input_dtNascimento.value;
+        genLiterarioFavoritoVar = select_genLivros.value;
+
+        // Pega o Genero usuário
+        var radioGeneros = document.getElementsByName('genero');
+        generoPerfilVar;
+
+        for (var index = 0; index < radioGeneros.length; index++) {
+
+            if (radioGeneros[index].checked) {
+                generoPerfilVar = radioGeneros[index].value;
+                break;
+            }
+
+        }
+
+        // Pega o habito de leitura usuário
+        var radioHabito = document.getElementsByName('radioHabito');
+        habitoLeituraVar;
+
+        for (var j = 0; j < radioHabito.length; j++) {
+
+            if (radioHabito[j].checked) {
+                habitoLeituraVar = radioHabito[j].value;
+                break;
+            }
+        }
+
+        if (dtNacimentoVar == "" || genLiterarioFavoritoVar == "#" || generoPerfilVar == undefined || habitoLeituraVar == undefined) {
+
+            alert("É necessário preencher todos os campos para criar um perfil");
+
+        } else {
+
+            content.innerHTML = ``;
+            content.innerHTML = `
+    <div class="div_fotos">
+        <h1 class="subTitulo" >Escolha sua Foto de Perfil</h1>
+        <p class="pPergunta">Selecione uma das imagens abaixo como foto de perfil da sua página.</p>
+        
+        <div class="div_selecao">
+            <label class="labelFotosPerfil">
+                <input type="radio" name="radioFoto" value="1" />
+                <div class="imagem_div"><img class="fotosPerfi" src="img/imgEmilia.png" alt=""></div> 
+            </label>
+            
+            <label class="labelFotosPerfil">
+                <input type="radio" name="radioFoto" value="2" />
+                <div class="imagem_div"><img class="fotosPerfi" src="img/imgCecilia.png" alt=""></div>
+            </label>
+
+            <label class="labelFotosPerfil">
+                <input type="radio" name="radioFoto" value="3" />
+                <div class="imagem_div"> <img class="fotosPerfi" src="img/imgMachado.png" alt=""></div>
+            </label>
+
+            <label class="labelFotosPerfil">
+                <input type="radio" name="radioFoto" value="4" />
+                <div class="imagem_div"><img class="fotosPerfi" src="img/imgShakespeare.png" alt=""></div>
+            </label>
+            
+            <label class="labelFotosPerfil">
+                <input type="radio" name="radioFoto" value="5" />
+                <div class="imagem_div"><img class="fotosPerfi" src="img/imgClarice.png" alt=""></div>
+            </label>
+
+            <label class="labelFotosPerfil">
+                <input type="radio" name="radioFoto" value="6" />
+                <div class="imagem_div"><img class="fotosPerfi" src="img/imgSherlock.png" alt=""></div>
+            </label>
+        </div>
+        <button onclick="cadastrarPerfil()"  class="finalizarBtn">Finalizar</button>`;
+        }
+    }
+
+
+    function cadastrarPerfil() {
+        var radioFoto = document.getElementsByName('radioFoto');
+        var fotoPerfilVar;
+
+        for (var j = 0; j < radioFoto.length; j++) {
+
+            if (radioFoto[j].checked) {
+                fotoPerfilVar = radioFoto[j].value;
+                break;
+            }
+        }
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        sessionStorage.FOTO_USUARIO = fotoPerfilVar;
+
+        if (fotoPerfilVar == undefined) {
+
+            alert("Selecione uma foto de perfil para continuar");
+
+        } else {
+
+            fetch("/perfil/cadastrarPerfil", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    dtNacimentoServer: dtNacimentoVar,
+                    generoPerfilServer: generoPerfilVar,
+                    genLitarioFavServer: genLiterarioFavoritoVar,
+                    habitoLeituraServer: habitoLeituraVar,
+                    fotoPerfilServer: fotoPerfilVar,
+                    idUsuarioServer: idUsuario
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        setTimeout(() => {
+                            window.location = "../dashboard/mural.html";
+                        }, "1000");
+
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(dtNacimentoVar);
+                    console.log(generoPerfilVar);
+                    console.log(genLiterarioFavoritoVar);
+                    console.log(habitoLeituraVar);
+                    console.log(fotoPerfilVar);
+                    console.log(idUsuario);
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+            return false;
+        }
+    }
+</script>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mil Livros | Perfil</title>
+    <script src="../js/sessao.js"></script>
+    <link rel="stylesheet" href="../css/usuarioPerfil.css">
+</head>
+
+<body onload="validarSessao(), carregarFotoPerfil(), atualizarFeed()" style="background-color: #ffffff;">
+    <div class="div_navbar">
+        <img class="logoNav" src="../img/logoML-semfundo.png" alt="">
+        <ul class="ulNav">
+            <li class="liNav"><a class="textoNav" href="dashboard.html">Dashboard</a></li>
+            <li class="liNav"><a class="textoNav" onclick="limparSessao()" href="../index.html">Sair</a></li>
+        </ul>
+    </div>
+
+    <section>
+        <header class="header_Perfil">
+            <div class="imagem_div">
+                <img class="fotosPerfi" id="fotosPerfil1" src="../img/imgEmilia.png" alt="">
+                <img class="fotosPerfi" id="fotosPerfil2" src="../img/imgCecilia.png" alt="">
+                <img class="fotosPerfi" id="fotosPerfil3" src="../img/imgMachado.png" alt="">
+                <img class="fotosPerfi" id="fotosPerfil4" src="../img/imgShakespeare.png" alt="">
+                <img class="fotosPerfi" id="fotosPerfil5" src="../img/imgClarice.png" alt="">
+                <img class="fotosPerfi" id="fotosPerfil6" src="../img/imgSherlock.png" alt="">
+            </div>
+        </header>
+    </section>
+
+    <section class="section_resenhas">
+        <div class="nomeUsuario">
+            <h2><span id="b_usuario">Leitor</span></h2>
+        </div>
+        <div class="div_Revconteiner">
+            <form id="form_postagem" method="post" onsubmit="return autenticar()">
+                <div class="cabecalho">
+                    <label>
+                        <P class="textoInput">Título:</P>
+                        <input name="titulo" id="input_titulo" maxlength="100" type="text">
+                    </label>
+
+                    <div class="div_perguntaLiterariaSelect">
+                        <p class="textoInput">Gênero literário</p>
+                        <select id="select_genLivros">
+                            <option selected disabled value="#">Gênero Literário Favorito</option>
+                            <option value="1">Ficção Científica</option>
+                            <option value="2">Fantasia</option>
+                            <option value="3">Romance</option>
+                            <option value="4">Mistério</option>
+                            <option value="5">Terror</option>
+                            <option value="6">Aventura</option>
+                            <option value="7">Histórico</option>
+                            <option value="8">Biografia</option>
+                            <option value="9">Jovem Adulto</option>
+                            <option value="10">Poesia</option>
+                            <option value="11">Infantil</option>
+                        </select>
+                    </div>
+
+                    <label class="label_nota">
+                        <p class="textoInput">Nota:</p>
+                        <select name="Nota" id="select_nota">
+                            <option value="#" selected disabled>Nota</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </label>
+                </div>
+                <label>
+                    <p class="textoInput"> Escreva o que você achou do livro (máximo de 400 caracteres):</p>
+                    <textarea name="descricao" id="textarea_descricao" maxlength="400" rows="5"></textarea>
+                </label>
+            </form>
+            <button class="publicarBtn" onclick="autenticar()">Publicar</button>
+        </div>
+        <h1>Suas Resenhas:</h1>
+        <div class="div-results">
+            <div id="feed_container" class="feed-container">
+
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+<script>
+
+    var idUsuario = sessionStorage.ID_USUARIO;
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function carregarFotoPerfil() {
+
+        fetch("/perfil/carregarFotosPerfil", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuario
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.FOTO_USUARIO = json.ftPerfil;
+                    });
+
+
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        if (sessionStorage.FOTO_USUARIO == "1") {
+            fotosPerfil1.style.display = "block"
+        }
+        else if (sessionStorage.FOTO_USUARIO == "2") {
+            fotosPerfil2.style.display = "block"
+        }
+        else if (sessionStorage.FOTO_USUARIO == "3") {
+            fotosPerfil3.style.display = "block"
+        }
+        else if (sessionStorage.FOTO_USUARIO == "4") {
+            fotosPerfil4.style.display = "block"
+        }
+        else if (sessionStorage.FOTO_USUARIO == "5") {
+            fotosPerfil5.style.display = "block"
+        }
+        else if (sessionStorage.FOTO_USUARIO == "6") {
+            fotosPerfil6.style.display = "block"
+        }
+        return false;
+
+    }
+
+
+    function autenticar() {
+        var tituloLivroVar = input_titulo.value;
+
+        fetch("/livro/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                tituloLivroServer: tituloLivroVar,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO autenticar()!")
+            console.log(resposta)
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+                    console.log("-------------------------AQUI-------------------------");
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    if (json.length > 0) {
+                        console.log(sessionStorage.ID_LIVRO);
+                        sessionStorage.ID_LIVRO = json[0].idLivro //<-- Uso de Vetor aqui
+                        aux_RegistroJaExiste = true;
+                        publicar();
+                    } else {
+                        registrar();
+
+                    }
+                });
+            } else {
+                console.log("Houve um erro ao tentar realizar o login!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+
+        return false;
+    }
+
+    function registrar() {
+        var tituloLivroVar = input_titulo.value;
+        var generoLivroVar = select_genLivros.value;
+
+        if (tituloLivroVar == "" || generoLivroVar == "#") {
+            alert("Erro ao publicar Resenha: Todos os campos devem estar preenchidos")
+        } else {
+            fetch("/livro/registrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    tituloLivroServer: tituloLivroVar,
+                    generoLivroServer: generoLivroVar,
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+                    if (resposta.ok) {
+                        autenticar();
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+            return false;
+        }
+    }
+
+    function limparFormulario() {
+        document.getElementById("form_postagem").reset();
+    }
+
+    function publicar() {
+        var fkUsuarioAnalise = idUsuario;
+
+        fetch(`/livro/publicar/${fkUsuarioAnalise}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkLivroServer: sessionStorage.ID_LIVRO,
+                fkUsuarioAnaliseServer: fkUsuarioAnalise,
+                notaServer: form_postagem.select_nota.value,
+                resenhaServer: form_postagem.textarea_descricao.value
+            }),
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso!");
+                window.location = "/dashboard/mural.html";
+                limparFormulario();
+
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+
+    }
+
+
+
+    function atualizarFeed() {
+        fetch("/livro/listar").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        var publicacao = resposta[i];
+                        var divPublicacao = document.createElement("div");
+                        var spanTitulo = document.createElement("span");
+                        var spanGen = document.createElement("span");
+                        var spanNome = document.createElement("span");
+                        var spanNota = document.createElement("span");
+                        var pDescricao = document.createElement("p");
+
+
+                        var generoLivroAnalisado = "";
+                        if (publicacao.fkGeneroLivro == 1) {
+                            generoLivroAnalisado = "Ficção Científica";
+                        } else if (publicacao.fkGeneroLivro == 2) {
+
+                            generoLivroAnalisado = "Fantasia";
+                        } else if (publicacao.fkGeneroLivro == 3) {
+
+                            generoLivroAnalisado = "Romance";
+                        } else if (publicacao.fkGeneroLivro == 4) {
+
+                            generoLivroAnalisado = "Mistério";
+                        } else if (publicacao.fkGeneroLivro == 5) {
+
+                            generoLivroAnalisado = "Terror";
+                        } else if (publicacao.fkGeneroLivro == 6) {
+
+                            generoLivroAnalisado = "Aventura";
+                        } else if (publicacao.fkGeneroLivro == 7) {
+
+                            generoLivroAnalisado = "Histórico";
+                        } else if (publicacao.fkGeneroLivro == 8) {
+
+                            generoLivroAnalisado = "Biografia";
+                        } else if (publicacao.fkGeneroLivro == 9) {
+
+                            generoLivroAnalisado = "Jovem Adulto";
+                        } else if (publicacao.fkGeneroLivro == 10) {
+
+                            generoLivroAnalisado = "Poesia";
+                        } else if (publicacao.fkGeneroLivro == 11) {
+                            
+                            generoLivroAnalisado = "Infantil";
+                        }
+
+
+                        spanTitulo.innerHTML = "Título da Obra: <b>" + publicacao.nomeLivro + "</b>";
+                        spanNome.innerHTML = "Nome do Usuário: <b>" + publicacao.nomeUsuario + "</b>";
+                        spanGen.innerHTML = "Gênero da Obra: <b>" + generoLivroAnalisado + "</b>";
+                        spanNota.innerHTML = "Nota dada: <b>" + publicacao.nota + "</b>";
+                        pDescricao.innerHTML = "<b>Resenha:</b> " + publicacao.resenha;
+
+                        divPublicacao.className = "publicacao";
+                        spanNome.className = "publicacao-nome";
+                        spanTitulo.className = "publicacao-titulo";
+                        pDescricao.className = "publicacao-descricao";
+
+                        divPublicacao.appendChild(spanNome);
+                        divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(spanGen);
+                        divPublicacao.appendChild(spanNota);
+                        divPublicacao.appendChild(pDescricao);
+                        feed.appendChild(divPublicacao);
+                    }
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+</script>

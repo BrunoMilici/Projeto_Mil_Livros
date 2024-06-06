@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Perfil - Mil Livros</title>
+    <link rel="stylesheet" href="css/usuarioPerfil.css">
+</head>
+
+<body>
+    <div class="div_navbar">
+        <img src="DraftLogo.png" alt="">
+        <ul class="ulNav">
+            <li class="liNav"><a class="textoNav" href="#">Dashboard</a></li>
+            <li class="liNav"><a class="textoNav" href="#">Sair</a></li>
+        </ul>
+    </div>
+    <section>
+        <header class="header_Perfil">
+            <div class="imagem_div"><img class="fotosPerfi" src="img/imgCecilia.png" alt=""></div>
+        </header>
+    </section>
+
+    <section class="section_resenhas">
+        <div class="div_Revconteiner">
+            <form id="form_postagem" method="post" onsubmit="return publicar()">
+                <div class="cabecalho">
+                    <label>
+                        <P class="textoInput">Título:</P>
+                        <input name="titulo" id="input_titulo" maxlength="100" type="text">
+                    </label>
+
+                    <label class="label_nota">
+                        <p class="textoInput">Nota:</p>
+                        <select name="Nota" id="select_nota">
+                            <option value="#" selected disabled>Nota</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </label>
+                </div>
+                <label>
+                    <p class="textoInput"> Escreva o que você achou do livro (máximo de 250 caracteres):</p>
+                    <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                </label>
+                <button class="publicarBtn">Publicar Resenha</button>
+            </form>
+        </div>
+        <h1>Suas Resenhas:</h1>
+        <div class="div-results">
+            <div id="feed_container" class="feed-container">
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

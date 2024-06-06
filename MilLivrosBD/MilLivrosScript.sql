@@ -9,6 +9,8 @@ emaiUsuario VARCHAR(255),
 senha VARCHAR(45)
 ) auto_increment = 1;
 
+select * from usuario;
+
 CREATE TABLE generosLiterarios(
 idGenero INT PRIMARY KEY AUTO_INCREMENT,
 generoLiterario VARCHAR(45)
@@ -16,7 +18,7 @@ generoLiterario VARCHAR(45)
 
 CREATE TABLE Perfil(
 idPerfil INT AUTO_INCREMENT,
-tipoLeitor VARCHAR (15),
+tipoLeitor VARCHAR (25),
 dtNascimento DATE,
 genero VARCHAR(45),
 ftPerfil INT,
@@ -31,33 +33,32 @@ CREATE TABLE Livro(
 idLivro INT PRIMARY KEY AUTO_INCREMENT,
 nomeLivro VARCHAR(100) NOT NULL,
 fkGeneroLivro INT,
-nota INT,
-resenha TEXT,
 FOREIGN KEY (fkGeneroLivro) REFERENCES generosLiterarios(idGenero)
 )auto_increment = 1;
+
 
 CREATE TABLE livroAnalisado(
 fkLivro INT,
 fkUsuarioAnalise INT,
-dtAnalise DATE,
+nota INT,
+resenha TEXT,
 FOREIGN KEY (fkUsuarioAnalise) REFERENCES usuario(idUsuario),
 FOREIGN KEY (fkLivro) REFERENCES Livro(idLivro),
 PRIMARY KEY(fkUsuarioAnalise,fkLivro)
 );
 
--- INSERTS DOS GÊNEROS LITERÁRIOS
-INSERT INTO generosLiterarios (generoLiterario) VALUES ('Ficção Científica');
-INSERT INTO generosLiterarios (generoLiterario) VALUES ('Fantasia');
-INSERT INTO generosLiterarios (generoLiterario) VALUES ('Romance');
-INSERT INTO generosLiterarios (generoLiterario) VALUES ('Mistério');
-INSERT INTO generosLiterarios (generoLiterario) VALUES ('Terror');
-INSERT INTO generosLiterarios (generoLiterario) VALUES ('Aventura');
-INSERT INTO generosLiterarios (generoLiterario) VALUES ('Histórico');
-INSERT INTO generosLiterarios (generoLiterario) VALUES ('Biografia');
-INSERT INTO generosLiterarios (generoLiterario) VALUES ('Jovem Adulto');
-INSERT INTO generosLiterarios (generoLiterario) VALUES ('Poesia');
-INSERT INTO generosLiterarios (generoLiterario) VALUES ('Infantil');
-
+INSERT INTO generosLiterarios (generoLiterario) VALUES 
+('Ficção Científica'), 
+('Fantasia'),
+('Romance'),
+('Mistério'),
+('Terror'),
+('Aventura'),
+('Histórico'),
+('Biografia'),
+('Jovem Adulto'),
+('Poesia'),
+('Infantil');
 
 
 

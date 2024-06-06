@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mil Livros</title>
+    <link rel="stylesheet" href="css/Loginstyle.css">
+    <script src="./js/sessao.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="div_texto">
+            <h1 class="texto">Faça parte da nossa comunidade agora!</h1>
+        </div>
+
+        <div class="div_formulario">
+            <div class="div_input">
+                <label for="email" class="texto">e-mail</label>
+                <input type="email" id="email_input">
+            </div>
+            <div class="div_input">
+                <label for="senha" class="texto">Senha</label>
+                <input type="password" id="senha_input">
+            </div>
+
+            <div id="div_msgERRO">
+                <p id="mensagemERRO"></p>
+            </div>
+
+            <button onclick="entrar()" class="texto">Entrar</button>
+
+            <div class="texto login">
+                <a href="Cadastro.html">Não possuo uma conta. Fazer Cadastro</a>
+            </div>
+        </div>
+    </div>
+    <div id="div_img">
+        <h2 class="texto">Bem Vindo de volta!</h2>
+        <img src="img/logoML-semfundo.png" alt="">
+        <p class="texto">Junte-se à comunidade Mil Livros e descubra um mundo de histórias! Faça login agora para começar sua jornada literária.</p>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+
+    function entrar() {
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+
+        if (emailVar == "" || senhaVar == "") {
+            div_msgERRO.style.display = "block";
+            mensagemERRO.innerHTML = `Todos os campos devem estar preenchidos`;
+            return false;
+        } else if (emailVar.indexOf(".") == -1 || emailVar.indexOf("@") == -1) {
+            div_msgERRO.style.display = "block";
+            mensagemERRO.innerHTML = `Email Inserido inválido`;
+            return false;
+        }
+        else {
+
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
+
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.EMAIL_USUARIO = json.emaiUsuario;
+                        sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                        sessionStorage.ID_USUARIO = json.idUsuario;
+
+
+                        setTimeout(function () {
+                            window.location = "./dashboard/mural.html";
+                        }, 2000); 
+
+                    });
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+                    div_msgERRO.style.display = "block";
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        mensagemERRO.innerHTML = `${texto}`;
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+            return false;
+
+        }
+    }
+
+</script>

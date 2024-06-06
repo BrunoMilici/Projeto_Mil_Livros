@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+  }
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+/* navbar */
+.div_navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between ;
+    background-color: #54101D;
+}
+
+ .ulNav{
+    display: flex;
+    text-decoration: none;
+}
+
+.textoNav {
+    padding: 10px;
+    text-decoration: none;
+    font-weight: 800;
+    color: white;
+    font-size: small;
+    font-family: "Inter", sans-serif;
+    transition: 0.3s;
+}
+
+.logoNav{
+    height: 50px;
+    padding: 10px;
+}
+
+.liNav{
+    padding: 10px;
+    list-style: none;
+}
+
+.textoNav:hover{
+    font-weight: 900;
+    color: #B18653;
+}
+
+
+/* Header */
+
+.header_cta{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 90vh;
+    background-image: url(../img/imgHeader\ 1.png);
+    background-size:  cover;
+    background-repeat: no-repeat;   
+}
+
+h1{
+    font-size: 60px;
+    width: 40vw;
+}
+
+.texto{
+    color: white;
+    /* text-align: justify; */
+    font-family: "Inter", sans-serif;   
+}
+
+.p_header{
+    width: 35vw;
+    font-size: 30px;
+}
+
+/* Seção de informações */
+
+.title{
+    font-family: "Inter", sans-serif;  
+    margin-top: 5%; 
+    margin-bottom: 5%;
+    font-size: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.paragrafoPadrao{
+    font-family: "Inter", sans-serif;  
+    text-align: center;    
+    font-size: 25px;
+    margin: 5% 5% 10% 5%;
+}
+
+.div_sobreProjeto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.div_SobreProjetoContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Seção Objetivos */
+
+.div_objetivosContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 5%;
+    align-items: center;
+    justify-content: center;
+}
+
+.div_objetivosContainer2{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    margin-bottom: 5%;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgObjetivos{
+    height: max-content;
+}
+
+/* Seção sobre mim */
+
+
+.div_sobreMimContainer{
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+    background-color: #47596F;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.534);
+}
+
+.imgBruno{
+    height: 635px;
+ }
+
+ .div_sobreMimTexto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+ }
+
+.h3_Title{
+    font-family: "Inter", sans-serif;  
+    color: #FFFF;
+    font-size: 30px;
+    font-weight: 700;
+    width: fit-content;
+    margin-top: 5%;
+}
+
+.paragrafoSobreMim{
+    font-family: "Inter", sans-serif;  
+    color: #FFFF;
+    font-size: 25px;
+    font-weight: 300;
+    text-align: justify;
+    margin: 5%;
+}
+
+.imgRedes{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px ;
+}
+
+/* Desenvolvimento     */
+.div_desenvolvimentoContainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+}
+
+.onuDivCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%; 
+    padding: 20px;
+    font-weight: 400;
+    background-color: #ffffff;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.534);
+    transition: 0.3s;
+}
+
+.onuDivCard:hover {
+    width:  23%;
+}
+
+
+.imgDesenvolvimeto{
+    height: 200px;
+    width: 200px;
+    margin-top: 5%;
+}
+
+/* Comece Agora */
+
+.section_comecar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div_comeceAgoraContainer{
+    display: flex;
+    width: 90%;
+    height:fit-content;
+    background-color: #54101D;
+    margin-bottom: 5%;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.534);
+}
+
+.paragrafoComecar{
+    font-family: "Inter", sans-serif;  
+    color: #FFFF;
+    font-size: 25px;
+    font-weight: 300;
+    align-items: center;
+    align-content: center;
+    text-align: justify;
+    margin: 5%;
+}
+
+.comecarCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logoComecar{
+    padding: 60px;
+    width: 300px;
+}
+
+/* Botão */
+
+.comecarButton{
+    padding: 10px;
+    width: 70%;
+    background-color: #B18653;
+    color: white;
+    transition: 0.3s;
+    font-size: large;
+    outline: none;
+    border: none;
+    margin-bottom: 10%;
+}
+
+.comecarButton:hover  {
+    background-color: #312229;
+    cursor: default;
+}
+
+/* footer */
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    background-color: #54101D;
+}
+
+.paragrafoFooter{
+    font-family: "Inter", sans-serif;  
+    margin-left: 25px;
+    color: #FFFF;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
